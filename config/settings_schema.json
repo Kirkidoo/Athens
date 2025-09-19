@@ -1197,6 +1197,21 @@
     ]
   },
   {
+    "name": "API",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Gamma Powersports"
+      },
+      {
+        "type": "text",
+        "id": "gamma_api_token",
+        "label": "API Token",
+        "info": "Enter your Gamma Powersports API token."
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.cart.name",
     "settings": [
       {

@@ -1,0 +1,58 @@
+<div id="gamma-fitment-container" style="display: none;">
+  <h2>{{ section.settings.title }}</h2>
+  <div id="gamma-fitment-data"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sku = {{ product.selected_or_first_available_variant.sku | json }};
+  const apiToken = {{ settings.gamma_api_token | json }};
+  const fitmentContainer = document.getElementById('gamma-fitment-container');
+  const fitmentDataContainer = document.getElementById('gamma-fitment-data');
+
+  if (sku && apiToken) {
+    const url = `https://api.gammapowersports.com/item/getFitmentMachines?itemNumber=${sku}`;
+
+    fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${apiToken}`
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.data && data.data.fitments && data.data.fitments.length > 0) {
+        let html = '<ul>';
+        data.data.fitments.forEach(fitment => {
+          html += `<li>${fitment.fitmentMake} ${fitment.fitmentModel} (${fitment.fitmentYears})</li>`;
+        });
+        html += '</ul>';
+
+        fitmentDataContainer.innerHTML = html;
+        fitmentContainer.style.display = 'block';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching vehicle fitment:', error);
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Vehicle Fitment",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Vehicle Fitment"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vehicle Fitment"
+    }
+  ]
+}
+{% endschema %}
