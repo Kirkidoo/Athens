@@ -1,0 +1,19 @@
+#gamma-fitment-container {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#gamma-fitment-container h2 {
+  margin-top: 0;
+}
+
+#gamma-fitment-data ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+#gamma-fitment-data li {
+  margin-bottom: 5px;
+}
