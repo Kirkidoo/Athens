@@ -1,8 +1,9 @@
 {{ 'section-gamma-vehicle-fitment.css' | asset_url | stylesheet_tag }}
 
-<div id="gamma-fitment-container" style="display: none;">
-  <h2>{{ section.settings.title }}</h2>
-  <div id="gamma-fitment-data"></div>
+<div id="gamma-fitment-container" class="fitment-container" style="display: none;">
+  <h2 class="fitment-title">{{ section.settings.title }}</h2>
+  <input type="text" id="fitment-filter" class="fitment-filter" placeholder="Filter by Make, Model, or Year...">
+  <div id="gamma-fitment-data" class="fitment-data"></div>
 </div>
 
 <script>
@@ -11,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const apiToken = {{ settings.gamma_api_token | json }};
   const fitmentContainer = document.getElementById('gamma-fitment-container');
   const fitmentDataContainer = document.getElementById('gamma-fitment-data');
+  const fitmentFilter = document.getElementById('fitment-filter');
+
+  let allFitments = [];
 
   if (sku && apiToken) {
     const url = `https://api.gammapowersports.com/item/getFitmentMachines?itemNumber=${sku}`;
@@ -23,13 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.json())
     .then(data => {
       if (data && data.data && data.data.fitments && data.data.fitments.length > 0) {
-        let html = '<ul>';
-        data.data.fitments.forEach(fitment => {
-          html += `<li>${fitment.fitmentMake} ${fitment.fitmentModel} (${fitment.fitmentYears})</li>`;
-        });
-        html += '</ul>';
-
-        fitmentDataContainer.innerHTML = html;
+        allFitments = data.data.fitments;
+        renderFitments(allFitments);
         fitmentContainer.style.display = 'block';
       }
     })
@@ -37,6 +36,29 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('Error fetching vehicle fitment:', error);
     });
   }
+
+  function renderFitments(fitments) {
+    let html = '';
+    fitments.forEach(fitment => {
+      html += `
+        <div class="fitment-row">
+          <div class="fitment-cell">${fitment.fitmentMake} ${fitment.fitmentModel}</div>
+          <div class="fitment-cell fitment-cell-year">(${fitment.fitmentYears})</div>
+        </div>
+      `;
+    });
+    fitmentDataContainer.innerHTML = html;
+  }
+
+  fitmentFilter.addEventListener('keyup', function() {
+    const filterValue = this.value.toLowerCase();
+    const filteredFitments = allFitments.filter(fitment => {
+      return fitment.fitmentMake.toLowerCase().includes(filterValue) ||
+             fitment.fitmentModel.toLowerCase().includes(filterValue) ||
+             fitment.fitmentYears.toLowerCase().includes(filterValue);
+    });
+    renderFitments(filteredFitments);
+  });
 });
 </script>
 

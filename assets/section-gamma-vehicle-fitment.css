@@ -1,19 +1,50 @@
-#gamma-fitment-container {
-  padding: 20px;
+.fitment-container {
   border: 1px solid #e0e0e0;
   border-radius: 5px;
+  padding: 20px;
   margin-top: 20px;
 }
 
-#gamma-fitment-container h2 {
+.fitment-title {
+  text-align: center;
   margin-top: 0;
+  margin-bottom: 20px;
 }
 
-#gamma-fitment-data ul {
-  list-style-type: disc;
-  padding-left: 20px;
+.fitment-filter {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-#gamma-fitment-data li {
-  margin-bottom: 5px;
+.fitment-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.fitment-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.fitment-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.fitment-row:last-child {
+  border-bottom: none;
+}
+
+.fitment-cell {
+  flex: 1;
+}
+
+.fitment-cell-year {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 20px;
 }
