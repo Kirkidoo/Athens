@@ -1,0 +1,17 @@
+.vehicle-search .vehicle-search__form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.vehicle-search .vehicle-search__select {
+  flex-grow: 1;
+  max-width: 200px;
+}
+
+.vehicle-search .vehicle-search__select-input {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+}

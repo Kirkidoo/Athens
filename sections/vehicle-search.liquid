@@ -1,22 +1,4 @@
-<style>
-  .vehicle-search-section-{{ section.id }} .vehicle-search__form {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .vehicle-search-section-{{ section.id }} .vehicle-search__select {
-    flex-grow: 1;
-    max-width: 200px;
-  }
-
-  .vehicle-search-section-{{ section.id }} .vehicle-search__select-input {
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-  }
-</style>
+{{ 'section-vehicle-search.css' | asset_url | stylesheet_tag }}
 
 <div class="container vehicle-search-section-{{ section.id }}">
   <h2 class="block-section-title text-center">{{ section.settings.title }}</h2>
