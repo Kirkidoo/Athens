@@ -1,0 +1,69 @@
+<style>
+  .vehicle-search-section-{{ section.id }} .vehicle-search__form {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .vehicle-search-section-{{ section.id }} .vehicle-search__select {
+    flex-grow: 1;
+    max-width: 200px;
+  }
+
+  .vehicle-search-section-{{ section.id }} .vehicle-search__select-input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+  }
+</style>
+
+<div class="container vehicle-search-section-{{ section.id }}">
+  <h2 class="block-section-title text-center">{{ section.settings.title }}</h2>
+  <vehicle-search id="vehicle-search-{{ section.id }}" class="vehicle-search" data-section-id="{{ section.id }}">
+    <div class="vehicle-search__form">
+      <div class="vehicle-search__select">
+        <select id="vehicle-search-type-{{ section.id }}" class="vehicle-search__select-input" name="type">
+          <option value="">Select Type</option>
+        </select>
+      </div>
+      <div class="vehicle-search__select">
+        <select id="vehicle-search-year-{{ section.id }}" class="vehicle-search__select-input" name="year" disabled>
+          <option value="">Select Year</option>
+        </select>
+      </div>
+      <div class="vehicle-search__select">
+        <select id="vehicle-search-make-{{ section.id }}" class="vehicle-search__select-input" name="make" disabled>
+          <option value="">Select Make</option>
+        </select>
+      </div>
+      <div class="vehicle-search__select">
+        <select id="vehicle-search-model-{{ section.id }}" class="vehicle-search__select-input" name="model" disabled>
+          <option value="">Select Model</option>
+        </select>
+      </div>
+      <button id="vehicle-search-submit-{{ section.id }}" class="button" disabled>Find Parts</button>
+    </div>
+  </vehicle-search>
+</div>
+
+<script src="{{ 'vehicle-search.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Vehicle Search",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Find Parts for Your Vehicle"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vehicle Search"
+    }
+  ]
+}
+{% endschema %}
