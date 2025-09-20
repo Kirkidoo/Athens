@@ -1208,6 +1208,13 @@
         "id": "gamma_api_token",
         "label": "API Token",
         "info": "Enter your Gamma Powersports API token."
+      },
+      {
+        "type": "text",
+        "id": "gamma_api_url",
+        "label": "API URL",
+        "info": "Enter your Gamma Powersports API URL.",
+        "default": "https://api.gammapowersports.com"
       }
     ]
   },

@@ -2,7 +2,7 @@
 
 <div class="container vehicle-search-section-{{ section.id }}">
   <h2 class="block-section-title text-center">{{ section.settings.title }}</h2>
-  <vehicle-search id="vehicle-search-{{ section.id }}" class="vehicle-search" data-section-id="{{ section.id }}">
+  <vehicle-search id="vehicle-search-{{ section.id }}" class="vehicle-search" data-section-id="{{ section.id }}" data-api-url="{{ settings.gamma_api_url }}" data-api-token="{{ settings.gamma_api_token }}">
     <div class="vehicle-search__form">
       <div class="vehicle-search__select">
         <select id="vehicle-search-type-{{ section.id }}" class="vehicle-search__select-input" name="type">

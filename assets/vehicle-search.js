@@ -2,9 +2,9 @@ class VehicleSearch extends HTMLElement {
   constructor() {
     super();
 
-    this.token = "037573e5-3cf2-487d-8c00-9c2f313bbf0e";
-    this.apiUrl = "https://api.gammapowersports.com";
     this.sectionId = this.dataset.sectionId;
+    this.apiUrl = this.dataset.apiUrl;
+    this.token = this.dataset.apiToken;
 
     this.typeSelect = this.querySelector(`#vehicle-search-type-${this.sectionId}`);
     this.yearSelect = this.querySelector(`#vehicle-search-year-${this.sectionId}`);
